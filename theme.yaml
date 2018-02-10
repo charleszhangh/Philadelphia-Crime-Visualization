@@ -1,0 +1,12 @@
+attrs:
+    Figure:
+        background_fill_color: 'black'
+        border_fill_color: 'black'
+        outline_line_color: 'black'
+    Axis:
+        axis_line_color: "black"
+        axis_label_text_color: "black"
+        major_label_text_color: "black"
+        major_tick_line_color: "black"
+        minor_tick_line_color: "black"
+        minor_tick_line_color: "black"
