@@ -1,6 +1,6 @@
 """
-Created January 6th, 2018
-Program: Visualizes various countries' music preferences for acousticness, danceability, energy, and valence.
+Created February 4th, 2018
+Program: Visualizes various types of crime in Philadelphia from 2006 to 2017.
 @author: Charles Zhang
 """
 
@@ -21,29 +21,24 @@ from bokeh.core.properties import field
 url = "Philadelphia-Crime-Visualization/static/2006_all.png"
 N = 1
 desc = Div(text=open(join(dirname(__file__), 'description.html')).read(), width=400)
-# source = ColumnDataSource(dict(
-#     url = [url]
-# ))
 
+# sets ColumnDataSource as a dict with url field
 def get_dataset(src):
     new_dict = dict(url = [src])
     return ColumnDataSource(data=new_dict)
 source = get_dataset(url)
-def make_plot():
 
+def make_plot():
     xdr = Range1d(start=0, end=1100)
     ydr = Range1d(start=0, end=750)
     p = figure(
         title=None, x_range=xdr, y_range=ydr, plot_width=1100, plot_height=750,
         h_symmetry=False, v_symmetry=False, min_border=0, toolbar_location=None)
 
-    #p = figure(x_range=(0,1000), y_range=(0,1000))
     image1 = ImageURL(url="url", x=0, y=0, w=900, h=750, anchor="bottom_left")
     p.add_glyph(source, image1)
     p.xgrid.grid_line_color = None
     p.ygrid.grid_line_color = None
-    #p.image_url(url=['crime20.png'], x=0, y=1,w=750, h=650)
-    #p.add_glyph(image1)
     return p
 
 #event handlers below makes changes to Slider values
@@ -76,7 +71,6 @@ def update_data(attrname, old, new):
         str_crime = "otheroffenses"
 
     new_url = "Philadelphia-Crime-Visualization/static/" + str(year) + "_" + str_crime + ".png"
-    #print(new_url)
     new_source = get_dataset(new_url)
     source.data.update(new_source.data)
 
